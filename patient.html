@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Patient Dashboard - MedCare</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --brand:#1056d6; }
+    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji'; }
+    .btn-primary { @apply bg-[color:var(--brand)] text-white px-5 py-2 rounded-xl font-semibold shadow hover:brightness-110 active:translate-y-px; }
+    .btn-outline { @apply border border-gray-300 text-gray-700 px-5 py-2 rounded-xl font-semibold hover:bg-gray-50; }
+    .card { @apply bg-white rounded-2xl shadow-sm border border-gray-100; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white/90 backdrop-blur border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[color:var(--brand)] text-white font-black">+</span>
+        <div>
+          <div class="text-lg font-extrabold tracking-tight">MEDCARE</div>
+          <div class="text-xs -mt-0.5 text-gray-500">HEALTH SOLUTION</div>
+        </div>
+      </a>
+      <div id="userMenu" class="flex items-center gap-3">
+        <span id="userGreeting" class="text-sm font-semibold"></span>
+        <button id="logoutBtn" class="bg-orange-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-orange-700 transition text-sm sm:text-base">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Section -->
+  <section id="dashboard" class="py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold">Patient Dashboard</h2>
+      <p id="dashInfo" class="text-gray-600"></p>
+
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+
+        <!-- Left Section -->
+        <div class="md:col-span-2 space-y-6">
+          
+          <!-- Profile Card -->
+          <div class="card p-6 flex items-center gap-4">
+            <img src="https://img.freepik.com/premium-photo/bodyguard-hands-gun-suit-jacket-studio-background-dark-secret-spy-isolated-mafia-leadership-gangster-man-criminal-hiding-weapon-formal-crime-lord-fashion-clothes-aesthetic_590464-145407.jpg?w=2000" alt="Profile" class="w-20 h-20 rounded-full border">
+            <div>
+              <h3 class="text-xl font-bold">Dinanta Adhikary</h3>
+              <p class="text-sm text-gray-600">Age: 21 | Blood Group: B+</p>
+              <p class="text-sm text-gray-600">Email: adhikarydinanta39@gmail.com</p>
+            </div>
+          </div>
+
+          <!-- Upcoming Appointment -->
+          <div class="card p-6">
+            <h3 class="text-xl font-bold">Upcoming Appointment</h3>
+            <p class="mt-2 text-gray-600">Dr. Sen | 8th Sept 2025 | 10:30 AM</p>
+            <button class="btn-primary mt-4">View Details</button>
+          </div>
+
+          <!-- Medical History -->
+          <div class="card p-6 overflow-x-auto">
+            <h3 class="text-xl font-bold">Medical History</h3>
+            <table class="min-w-full mt-3 text-sm">
+              <thead>
+                <tr class="bg-gray-100 text-gray-600">
+                  <th class="p-2 text-left">Date</th>
+                  <th class="p-2 text-left">Doctor</th>
+                  <th class="p-2 text-left">Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="p-2">20 Sept 2025</td>
+                  <td class="p-2">Dr. Sayandeep</td>
+                  <td class="p-2">Follow-up for blood pressure</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="p-2">12 Jul 2025</td>
+                  <td class="p-2">Dr. Sahid</td>
+                  <td class="p-2">Routine check-up</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="space-y-6">
+          <!-- Quick Links -->
+          <div class="card p-6">
+            <h3 class="text-xl font-bold">Quick Links</h3>
+            <a href="index.html#appointment" class="btn-primary mt-3 inline-block">Book New</a>
+            <a href="#" class="btn-outline mt-3 inline-block">Download Reports</a>
+          </div>
+
+          <!-- Notifications -->
+          <div class="card p-6">
+            <h3 class="text-xl font-bold">Notifications</h3>
+            <ul class="list-disc list-inside text-sm text-gray-700 mt-3 space-y-1">
+              <li>Upcoming appointment tomorrow</li>
+              <li>Prescription available for download</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- Disease Entry Feature -->
+<div class="card p-6">
+  <h3 class="text-xl font-bold">Describe Your Problem</h3>
+  <textarea id="diseaseInput" rows="3" class="mt-3 w-full border rounded-lg p-3 text-sm focus:ring-2 focus:ring-[color:var(--brand)] outline-none" placeholder="Write your symptoms or disease here..."></textarea>
+  <button id="diseaseSubmit" class="bg-green-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-green-700 transition text-sm sm:text-base">Submit</button>
+
+  <h4 class="mt-5 font-semibold">My Health Issues</h4>
+  <ul id="diseaseList" class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1"></ul>
+</div>
+
+<script>
+  // Load saved diseases
+  const diseaseListEl = document.getElementById("diseaseList");
+  const savedDiseases = JSON.parse(localStorage.getItem("patient_diseases") || "[]");
+
+  function renderDiseases() {
+    diseaseListEl.innerHTML = savedDiseases.map(d => `<li>${d}</li>`).join("");
+  }
+  renderDiseases();
+
+  // Handle submit
+  document.getElementById("diseaseSubmit").addEventListener("click", () => {
+    const diseaseText = document.getElementById("diseaseInput").value.trim();
+    if (diseaseText) {
+      savedDiseases.push(diseaseText);
+      localStorage.setItem("patient_diseases", JSON.stringify(savedDiseases));
+      document.getElementById("diseaseInput").value = "";
+      renderDiseases();
+    } else {
+      alert("Please enter your problem before submitting.");
+    }
+  });
+</script>
+<!-- Personal Details Form -->
+<div class="card p-6">
+  <h3 class="text-xl font-bold">My Personal Details</h3>
+
+  <form id="personalDetailsForm" class="mt-4 space-y-3">
+    <input id="pdName" type="text" placeholder="Full Name" class="w-full border rounded-lg p-3 text-sm focus:ring-2 focus:ring-[color:var(--brand)] outline-none">
+    <input id="pdAge" type="number" placeholder="Age" class="w-full border rounded-lg p-3 text-sm focus:ring-2 focus:ring-[color:var(--brand)] outline-none">
+    <input id="pdEmail" type="email" placeholder="Email" class="w-full border rounded-lg p-3 text-sm focus:ring-2 focus:ring-[color:var(--brand)] outline-none">
+    <input id="pdPhone" type="tel" placeholder="Contact Number" class="w-full border rounded-lg p-3 text-sm focus:ring-2 focus:ring-[color:var(--brand)] outline-none">
+    <textarea id="pdAddress" rows="2" placeholder="Address" class="w-full border rounded-lg p-3 text-sm focus:ring-2 focus:ring-[color:var(--brand)] outline-none"></textarea>
+    
+    <button type="submit" class="bg-green-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-green-700 transition text-sm sm:text-base">Save Details</button>
+  </form>
+
+  <div id="personalDetailsDisplay" class="mt-5 hidden">
+    <h4 class="font-semibold">Saved Information:</h4>
+    <p id="dispName" class="text-sm text-gray-700"></p>
+    <p id="dispAge" class="text-sm text-gray-700"></p>
+    <p id="dispEmail" class="text-sm text-gray-700"></p>
+    <p id="dispPhone" class="text-sm text-gray-700"></p>
+    <p id="dispAddress" class="text-sm text-gray-700"></p>
+  </div>
+</div>
+
+<script>
+  const pdForm = document.getElementById("personalDetailsForm");
+  const pdDisplay = document.getElementById("personalDetailsDisplay");
+
+  // Load saved personal details
+  const savedDetails = JSON.parse(localStorage.getItem("patient_details") || "{}");
+
+  function showDetails() {
+    if (savedDetails.name) {
+      document.getElementById("dispName").textContent = "Name: " + savedDetails.name;
+      document.getElementById("dispAge").textContent = "Age: " + savedDetails.age;
+      document.getElementById("dispEmail").textContent = "Email: " + savedDetails.email;
+      document.getElementById("dispPhone").textContent = "Phone: " + savedDetails.phone;
+      document.getElementById("dispAddress").textContent = "Address: " + savedDetails.address;
+      pdDisplay.classList.remove("hidden");
+    }
+  }
+  showDetails();
+
+  // Save details
+  pdForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const details = {
+      name: document.getElementById("pdName").value.trim(),
+      age: document.getElementById("pdAge").value.trim(),
+      email: document.getElementById("pdEmail").value.trim(),
+      phone: document.getElementById("pdPhone").value.trim(),
+      address: document.getElementById("pdAddress").value.trim(),
+    };
+
+    if (!details.name || !details.age || !details.email || !details.phone || !details.address) {
+      alert("Please fill in all details.");
+      return;
+    }
+
+    localStorage.setItem("patient_details", JSON.stringify(details));
+    Object.assign(savedDetails, details);
+    showDetails();
+    alert("Personal details saved successfully!");
+  });
+   document.getElementById("logoutBtn").addEventListener("click", function () {
+    if (confirm("Are you sure you want to log out?")) {
+      // Remove patient session data
+      localStorage.removeItem("medcare_session"); // Session key
+      // Optional: clear other data (uncomment if needed)
+      // localStorage.removeItem("patient_details");
+      // localStorage.removeItem("patient_diseases");
+
+      // Redirect to login/home page
+      window.location.href = "index.html";
+    }
+  });
+  
+</script>
+  </section>
+  <script src="patient.js"></script>
+</body>
+</html>
